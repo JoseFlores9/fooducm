@@ -1,9 +1,18 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Button, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import ProductList from '../components/Products/ProductList'
 
 export default function Products(props) {
-    const { products } = props
     const [selectedProds, setSelectedProds] = useState([])
+    const urlBase = "http://10.0.2.2:8080/hola"
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        axios.get(urlBase).then((response) => {
+            setProducts(response.data.products)
+          });
+    },[])
 
     const handleSelectProds = (prodId) => {
         let temProds = selectedProds.slice()
@@ -20,7 +29,7 @@ export default function Products(props) {
     return (
         <View>
             <ScrollView>
-                <View style={{backgroundColor: '#0000ff', padding: 8}}>
+                <View style={{backgroundColor: '#0066cb', padding: 8}}>
                     <Text style={{fontSize: 30, color: '#fff'}}>
                         Bebidas
                     </Text>
@@ -28,29 +37,7 @@ export default function Products(props) {
                         20 productos
                     </Text>
                 </View>
-                <View style={styles.container}>
-                    {products.map((p, index)=>
-                        <View
-                        key={index}
-                        style={styles.product(index % 2 === 0, selectedProds.includes(p.productId))}
-                        >
-                            <Image
-                                source={{uri: p.image}}
-                                style={styles.photo}
-                                />
-                            <Text style={styles.title}>
-                                {p.title}
-                            </Text>
-                            <Text>
-                                {p.price}
-                            </Text>
-                            <Button
-                                title='Comprar'
-                                onPress={() => handleSelectProds(p.productId)}
-                                />
-                        </View>
-                    )}
-                </View>
+                <ProductList products={products} handleSelectProds={handleSelectProds} selectedProds={selectedProds}/>
             </ScrollView>
         </View>
     )
@@ -67,15 +54,13 @@ export const styles = StyleSheet.create({
     product: (index, contains) => ({
         width: "48%",
         borderRadius: 4,
-        borderColor: '#0000ff',
-        borderWidth: contains ? 2 : 1,
+        borderColor: contains ? '#FF5733' : '#0066cb',
+        borderWidth: 2,
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: index ? 0 : 16,
         marginBottom: 16,
         paddingVertical: 16
-
-
     }),
     container: {
         flex: 1,

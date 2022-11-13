@@ -63,3 +63,31 @@ export const listProducts = [
         productId: 9
     }
 ]
+
+export const listCategories = [
+    {
+        catId: 1,
+        catName: "Frutas",
+        catImage: "https://cdn-icons-png.flaticon.com/512/1574/1574972.png"
+    },
+    {
+        catId: 2,
+        catName: "Bebidas",
+        catImage: "https://cdn-icons-png.flaticon.com/512/1574/1574972.png"
+    },
+    {
+        catId: 3,
+        catName: "Sandwich",
+        catImage: "https://cdn-icons-png.flaticon.com/512/1574/1574972.png"
+    },
+    {
+        catId: 4,
+        catName: "Almuerzos",
+        catImage: "https://cdn-icons-png.flaticon.com/512/1574/1574972.png"
+    },
+    {
+        catId: 5,
+        catName: "Galletas",
+        catImage: "https://cdn-icons-png.flaticon.com/512/1574/1574972.png"
+    }
+]

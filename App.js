@@ -2,11 +2,11 @@ import React from 'react'
 import { Text, View } from 'react-native'
 
 export default function App() {
-  return (
-    <View>
-      <Text>
-        PABLO PUTO
-      </Text>
-    </View>
-  )
+    return (
+        <View>
+            <Text>
+                primer commit
+            </Text>
+        </View>
+    )
 }

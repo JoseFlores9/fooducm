@@ -1,12 +1,8 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import Products from './src/screens/Products'
 
 export default function App() {
     return (
-        <View>
-            <Text>
-                primer commit
-            </Text>
-        </View>
+        <Products />
     )
 }

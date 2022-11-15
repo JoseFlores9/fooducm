@@ -1,10 +1,21 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import CategoryView from '../components/Home/CategoryView'
 import TopSection from '../components/Home/TopSection'
+import ProductList from '../components/Products/ProductList'
 import { listCategories } from '../mocks/products'
 
 export default function Home() {
+    const urlBase = "http://10.0.2.2:8080/hola"
+    const [products, setProducts] = useState([])
+    const [selectedProds, setSelectedProds] = useState([])
+
+    useEffect(() => {
+        axios.get(urlBase).then((response) => {
+            setProducts(response.data.products)
+          });
+    },[])
     return (
         <ScrollView style={{backgroundColor: '#DDEAE9'}}>
             <TopSection />
@@ -22,6 +33,7 @@ export default function Home() {
                         Ver Todos
                     </Text>
                 </View>
+                <ProductList products={products} selectedProds={selectedProds}/>
             </View>
         </ScrollView>
     )

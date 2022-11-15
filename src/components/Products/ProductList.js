@@ -4,7 +4,7 @@ import { Button, Image, StyleSheet, Text, View } from 'react-native'
 export default function ProductList(props) {
 
     const { products=[], handleSelectProds, selectedProds } = props
-    console.log(products)
+
     return (
         <View style={styles.container}>
             {products && products.map((p, index)=>

@@ -4,8 +4,9 @@ import { Button, Image, Platform, SafeAreaView, ScrollView, StyleSheet, Text, Vi
 import ProductList from '../components/Products/ProductList'
 
 export default function Products(props) {
+    const { catId, catName } = props.route.params
     const [selectedProds, setSelectedProds] = useState([])
-    const urlBase = Platform.OS === "ios" ? "http://localhost:8080/api/products?category=1" : "http://10.0.2.2:8080/api/products?category=1"
+    const urlBase = Platform.OS === "ios" ? "http://localhost:8080/api/products?category="+catId : "http://10.0.2.2:8080/api/products?category="+catId
     const [products, setProducts] = useState([])
 
     useEffect(() => {
@@ -31,10 +32,10 @@ export default function Products(props) {
             <ScrollView>
                 <View style={{backgroundColor: '#0066cb', padding: 8}}>
                     <Text style={{fontSize: 30, color: '#fff'}}>
-                        Bebidas
+                        {catName}
                     </Text>
                     <Text style={{fontSize: 20, color: '#fff'}}>
-                        20 productos
+                        {`${products.length} Productos`}
                     </Text>
                 </View>
                 <ProductList products={products} handleSelectProds={handleSelectProds} selectedProds={selectedProds}/>

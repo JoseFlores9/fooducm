@@ -2,12 +2,17 @@ import React from 'react'
 import { Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 
 export default function CategoriesList(props) {
-    const { categories=[] } = props
+    const { categories=[], navigation } = props
     return (
         <View style={styles.container}>
             {categories.map((cat, index) =>
                 <View key={index} style={styles.category(index % 2 === 0)}>
                     <TouchableHighlight
+                        onPress={ () => navigation.navigate('Productos' ,{
+                            catId: cat.id,
+                            catName: cat.title
+                        })}
+                        style={{width: "100%", height: "100%", alignItems: "center", justifyContent: "center"}}
                     >
                         <View style={{alignItems: "center"}}>
                             <Image

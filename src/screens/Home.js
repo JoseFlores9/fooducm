@@ -1,13 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
 import CategoryView from '../components/Home/CategoryView'
 import TopSection from '../components/Home/TopSection'
 import ProductList from '../components/Products/ProductList'
 import { listCategories } from '../mocks/products'
 
 export default function Home() {
-    const urlBase = "http://10.0.2.2:8080/hola"
+    const urlBase = Platform.OS === "ios" ? "http://localhost:8080/api/products?category=5" : "http://10.0.2.2:8080/api/products?category=5"
     const [products, setProducts] = useState([])
     const [selectedProds, setSelectedProds] = useState([])
 

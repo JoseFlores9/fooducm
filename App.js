@@ -1,14 +1,13 @@
+import 'react-native-gesture-handler';
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { listProducts } from './src/mocks/products'
-import Products from './src/screens/Products'
-import Home from './src/screens/Home'
+import { Tabs } from './src/navigator/Tabs';
 
 export default function App() {
 
     return (
         <NavigationContainer>
-            <Products />
+            <Tabs/>
         </NavigationContainer>
     )
 }

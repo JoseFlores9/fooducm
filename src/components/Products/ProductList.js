@@ -20,7 +20,7 @@ export default function ProductList(props) {
                         {p.title}
                     </Text>
                     <Text>
-                        {p.price}
+                        {p.formatprice}
                     </Text>
                     <Button
                         title={selectedProds.includes(p.productId) ? 'Quitar' : 'Agregar'}
@@ -34,11 +34,11 @@ export default function ProductList(props) {
 
 export const styles = StyleSheet.create({
     photo: {
-        width: 200,
+        width: "80%",
         height: 200
     },
     title: {
-        fontSize: 20
+        fontSize: 18
     },
     product: (index, contains) => ({
         width: "48%",
@@ -47,9 +47,10 @@ export const styles = StyleSheet.create({
         borderWidth: 2,
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft: index ? 0 : 16,
+        marginLeft: index ? 0 : "3%",
         marginBottom: 16,
-        paddingVertical: 16
+        paddingVertical: 16,
+        backgroundColor: "white"
     }),
     container: {
         flex: 1,

@@ -8,27 +8,21 @@ export default function ProductList(props) {
     const {selectedProducts, setProducts} = useContext(CartContext)
 
     const handleSelectProds = (prod) => {
-        let temProds = []
+        let temProds = {...selectedProducts}
         isIn(prod._id)
         if(isIn(prod._id)){
-            temProds = selectedProducts.filter(p => p._id !== prod._id)
+            let id = prod._id
+            delete temProds[id]
             setProducts(temProds)
         }
         else{
-            temProds = selectedProducts.slice()
-            temProds.push(prod)
+            temProds[prod._id] = prod
             setProducts(temProds)
         }
     }
 
     const isIn = (prodId) => {
-        let temp = selectedProducts.filter(p => p._id === prodId)
-        if (temp.length === 0) {
-            return false
-        }
-        else {
-            return true
-        }
+        return selectedProducts[prodId] ? true : false
     }
 
     return (
@@ -50,7 +44,7 @@ export default function ProductList(props) {
                     </Text>
                     <Button
                         title={isIn(p._id) ? 'Quitar' : 'Agregar'}
-                        onPress={() => handleSelectProds(p)}
+                        onPress={() => handleSelectProds({...p, quantity: 1})}
                     />
                 </View>
             )}

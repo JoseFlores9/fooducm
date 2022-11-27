@@ -1,16 +1,14 @@
 import React, { useContext } from 'react'
-import { Button, Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import NumericInput from 'react-native-numeric-input'
 import { CartContext } from '../context/CartContext'
 
 export const BuyCart = () => {
-    const {selectedProducts} = useContext(CartContext)
-    // const quantities = selectedProducts.filter(p => p).map(p => {"id"; p._id})
-    // console.log(quantities)
+    const {selectedProducts, updateQuantity} = useContext(CartContext)
     return (
         <ScrollView>
-            {selectedProducts.map((p, index) =>
+            {Object.values(selectedProducts).map((p, index) =>
                 <View key={index} style={styles.prodContainer}>
                     <View style={styles.imgContainer}>
                         <Image
@@ -28,16 +26,15 @@ export const BuyCart = () => {
                     </Text>
                     <View>
                         <NumericInput
-                            onChange={(e) => (e)}
+                            value={p.quantity}
+                            onChange={(e) => updateQuantity(p._id, e)}
                             rounded= {true}
-                            minValue={0}
+                            minValue={1}
                             maxValue={p.stock}
                             totalHeight={40}
                             totalWidth={80}
                         />
                     </View>
-                    <Button
-                    />
                 </View>
             )}
         </ScrollView>

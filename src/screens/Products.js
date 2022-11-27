@@ -1,8 +1,7 @@
 import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
-import { Button, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
 import ProductList from '../components/Products/ProductList'
-import { CartContext } from '../context/CartContext'
 
 export default function Products(props) {
     const { catId, catName } = props.route.params
@@ -24,10 +23,6 @@ export default function Products(props) {
                     <Text style={{fontSize: 20, color: '#fff'}}>
                         {`${products.length} Productos`}
                     </Text>
-                    <Button
-                        title='asdasd'
-                        onPress={() => hola.setProducts(["asdasd"])}
-                    />
                 </View>
                 <ProductList products={products} />
             </ScrollView>

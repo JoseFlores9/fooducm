@@ -1,16 +1,42 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Image, StyleSheet, Text, View } from 'react-native'
+import { CartContext } from '../../context/CartContext'
 
 export default function ProductList(props) {
 
-    const { products=[], handleSelectProds, selectedProds } = props
+    const { products=[] } = props
+    const {selectedProducts, setProducts} = useContext(CartContext)
+
+    const handleSelectProds = (prod) => {
+        let temProds = []
+        isIn(prod._id)
+        if(isIn(prod._id)){
+            temProds = selectedProducts.filter(p => p._id !== prod._id)
+            setProducts(temProds)
+        }
+        else{
+            temProds = selectedProducts.slice()
+            temProds.push(prod)
+            setProducts(temProds)
+        }
+    }
+
+    const isIn = (prodId) => {
+        let temp = selectedProducts.filter(p => p._id === prodId)
+        if (temp.length === 0) {
+            return false
+        }
+        else {
+            return true
+        }
+    }
 
     return (
         <View style={styles.container}>
             {products && products.map((p, index)=>
                 <View
                     key={index}
-                    style={styles.product(index % 2 === 0, selectedProds.includes(p.productId))}
+                    style={styles.product(index % 2 === 0, isIn(p._id))}
                 >
                     <Image
                         source={{uri: p.image}}
@@ -23,8 +49,8 @@ export default function ProductList(props) {
                         {p.formatprice}
                     </Text>
                     <Button
-                        title={selectedProds.includes(p.productId) ? 'Quitar' : 'Agregar'}
-                        onPress={() => handleSelectProds(p.productId)}
+                        title={isIn(p._id) ? 'Quitar' : 'Agregar'}
+                        onPress={() => handleSelectProds(p)}
                     />
                 </View>
             )}

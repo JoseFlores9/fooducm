@@ -106,6 +106,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4FEA92132933F8C800F62904 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +123,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				4FEA92132933F8C800F62904 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* fooducm */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* fooducmTests */,

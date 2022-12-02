@@ -58,7 +58,11 @@ export const styles = StyleSheet.create({
         height: 200
     },
     title: {
-        fontSize: 18
+        fontSize: 18,
+        width: "80%",
+        numberOfLines: 2,
+        textAlign: "center",
+        height: 50
     },
     product: (index, contains) => ({
         width: "48%",

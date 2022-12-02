@@ -34,7 +34,7 @@ export const BuyCart = () => {
                             </Text>
                         </View>
                     </View>
-                    <Text style={{fontSize: 18}}>
+                    <Text numberOfLines={2} style={{fontSize: 18,width: "30%"}}>
                         {p.title}
                     </Text>
                     <View>

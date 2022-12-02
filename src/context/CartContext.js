@@ -11,11 +11,15 @@ export const CartProvider = ({ children }) => {
     const updateQuantity = (id, value) => {
         dispatch({type: 'update', payload: {'id': id, 'value': value}})
     }
+    const deleteProduct = (id) =>{
+        dispatch({type: 'delete', payload: {'id': id}})
+    }
     return(
         <CartContext.Provider value={{
             selectedProducts,
             setProducts,
-            updateQuantity
+            updateQuantity,
+            deleteProduct
         }}>
             {children}
         </CartContext.Provider>

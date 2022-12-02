@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import NumericInput from 'react-native-numeric-input'
+import { DeleteButton } from '../components/BuyCart/DeleteButton'
 import { CartContext } from '../context/CartContext'
 
 export const BuyCart = () => {
-    const {selectedProducts, updateQuantity} = useContext(CartContext)
+    const {selectedProducts, updateQuantity, deleteProduct} = useContext(CartContext)
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
@@ -47,6 +48,7 @@ export const BuyCart = () => {
                             totalWidth={80}
                         />
                     </View>
+                    <DeleteButton deleteProduct={deleteProduct} prodId={p._id}/>
                 </View>
             )}
         </ScrollView>

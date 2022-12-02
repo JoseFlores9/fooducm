@@ -14,6 +14,11 @@ export const cartReducer = ( state, action ) => {
                 ...state,
                 [id]: prod
             }
+        case 'delete':
+            let id2 = action.payload.id
+            let temProds = {...state}
+            delete temProds[id2]
+            return temProds
         default:
             return state
     }

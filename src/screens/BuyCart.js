@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import NumericInput from 'react-native-numeric-input'
@@ -6,8 +6,20 @@ import { CartContext } from '../context/CartContext'
 
 export const BuyCart = () => {
     const {selectedProducts, updateQuantity} = useContext(CartContext)
+    const [total, setTotal] = useState(0)
+
+    useEffect(() => {
+        let temp = 0
+        Object.values(selectedProducts).map((p, index) =>
+            temp = temp + p.price * p.quantity
+        )
+        setTotal(temp)
+    },[selectedProducts])
     return (
         <ScrollView>
+            <Text style={{marginLeft: 8, fontSize: 18}}>
+                {`Precio total: ${total}`}
+            </Text>
             {Object.values(selectedProducts).map((p, index) =>
                 <View key={index} style={styles.prodContainer}>
                     <View style={styles.imgContainer}>

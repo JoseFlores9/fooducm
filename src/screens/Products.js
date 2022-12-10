@@ -1,31 +1,17 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button, Image, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
 import ProductList from '../components/Products/ProductList'
 
 export default function Products(props) {
     const { catId, catName } = props.route.params
-    const [selectedProds, setSelectedProds] = useState([])
     const urlBase = Platform.OS === "ios" ? "http://localhost:8080/api/products?category="+catId : "http://10.0.2.2:8080/api/products?category="+catId
     const [products, setProducts] = useState([])
-
     useEffect(() => {
         axios.get(urlBase).then((response) => {
             setProducts(response.data.products)
           });
     },[])
-
-    const handleSelectProds = (prodId) => {
-        let temProds = selectedProds.slice()
-        if(selectedProds.includes(prodId)){
-            temProds.splice(temProds.indexOf(prodId), 1)
-            setSelectedProds(temProds)
-        }
-        else{
-            temProds.push(prodId)
-            setSelectedProds(temProds)
-        }
-    }
 
     return (
         <SafeAreaView>
@@ -38,7 +24,7 @@ export default function Products(props) {
                         {`${products.length} Productos`}
                     </Text>
                 </View>
-                <ProductList products={products} handleSelectProds={handleSelectProds} selectedProds={selectedProds}/>
+                <ProductList products={products} />
             </ScrollView>
         </SafeAreaView>
     )

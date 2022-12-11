@@ -13,6 +13,7 @@ export const BuyProcess = (props) => {
     const handleBuy = () => {
         let compra = []
         let total = 0
+        let newDate = Date().toLocaleString("es-ES", {timeZone: "America/Santiago"})
         Object.values(selectedProducts).map((prod, index) => {
             total += prod.price
             compra.push({
@@ -22,7 +23,8 @@ export const BuyProcess = (props) => {
         })
         body = {
             products: compra,
-            total: total
+            total: total,
+            buy_date: newDate
         }
         let json = JSON.stringify(body)
         axios.post(urlBase, json, {headers: {
@@ -36,6 +38,7 @@ export const BuyProcess = (props) => {
             })
           })
     }
+
     return (
         <View>
             <Text>

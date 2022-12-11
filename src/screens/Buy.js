@@ -10,6 +10,7 @@ export const Buy = (props) => {
     const urlBase = Platform.OS === "ios" ? "http://localhost:8080/api/buy/": "http://10.0.2.2:8080/api/buy"
     const [data, setData] = useState()
     const { Auth } = useContext(AuthContext)
+
     const getBuy = () => {
         axios.get(urlBase + id, {headers: {
             'f-token': Auth
@@ -34,6 +35,9 @@ export const Buy = (props) => {
                     <ProductList products={data.products}/>
                     <Text>
                         {`Total: $${data.total}`}
+                    </Text>
+                    <Text>
+                        {`Fecha de compra: ${new Date(data.buy_date).toLocaleDateString('es-ES', {year:"numeric", month:"short", day:"numeric"})}`}
                     </Text>
                     <QRCode
                         value={data.id}

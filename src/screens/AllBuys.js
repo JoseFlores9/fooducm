@@ -23,15 +23,19 @@ export const AllBuys = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text>
-                Compras
-            </Text>
+            <View style={styles.titleContainer}>
+                <Text style={styles.title}>
+                    Todas las compras
+                </Text>
+            </View>
             {buys.map((buy, index) =>
                 <TouchableHighlight
                     key={index}
                     onPress={ () => navigation.navigate('Detalle' ,{
                         id: buy._id
                     })}
+                    activeOpacity={1}
+                    style={{marginBottom: 4, width: "100%"}}
                 >
                     <View style={styles.buy}>
                             <Text style={styles.content}>
@@ -55,10 +59,19 @@ export const styles = StyleSheet.create({
     buy: {
         backgroundColor: "#A4C4EC",
         padding: 8,
-        marginBottom: 4,
         width: "100%"
     },
     content: {
         color: "#FFF"
+    },
+    title: {
+        fontSize: 20
+    },
+    titleContainer: {
+        width: "100%",
+        height: 30,
+        borderBottomWidth: 1,
+        marginBottom: 8,
+        paddingLeft: 4
     }
 })

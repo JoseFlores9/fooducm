@@ -18,19 +18,21 @@ export const Buy = (props) => {
             setData(response.data.buyout)
         )
     }
-    useEffect(() =>{
+    useEffect(() => {
         getBuy()
     },[])
 
     return (
         <View style={styles.container}>
             {data &&
-                <View>
+                <View style={{width: "100%"}}>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>
+                            Detalle de la Compra
+                        </Text>
+                    </View>
                     <Text>
                         {`Id de la Compra: ${data.id}`}
-                    </Text>
-                    <Text>
-                        Detalle de la Compra
                     </Text>
                     <ProductList products={data.products}/>
                     <Text>
@@ -39,9 +41,12 @@ export const Buy = (props) => {
                     <Text>
                         {`Fecha de compra: ${new Date(data.buy_date).toLocaleDateString('es-ES', {year:"numeric", month:"short", day:"numeric"})}`}
                     </Text>
-                    <QRCode
-                        value={data.id}
-                    />
+                    <View style={styles.qrContainer}>
+                        <QRCode
+                            value={data.id}
+                            size={250}
+                        />
+                    </View>
                 </View>
             }
         </View>
@@ -60,5 +65,20 @@ export const styles = StyleSheet.create({
     },
     content: {
         color: "#FFF"
+    },
+    title: {
+        fontSize: 20
+    },
+    titleContainer: {
+        width: "100%",
+        height: 30,
+        borderBottomWidth: 1,
+        marginBottom: 8,
+        paddingLeft: 4
+    },
+    qrContainer: {
+        width: "100%",
+        alignItems: "center",
+        paddingTop: 16
     }
 })

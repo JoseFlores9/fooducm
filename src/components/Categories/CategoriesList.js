@@ -18,7 +18,7 @@ export default function CategoriesList(props) {
                             <Image
                                 source={{uri: cat.image}}
                                 style={styles.photo}
-                                />
+                            />
                             <Text style={styles.title}>
                                 {cat.title}
                             </Text>
@@ -32,7 +32,8 @@ export default function CategoriesList(props) {
 export const styles = StyleSheet.create({
     photo: {
         width: 50,
-        height: 50
+        height: 50,
+        tintColor: "#FFFFFF"
     },
     category: (index) => ({
         width: "46%",

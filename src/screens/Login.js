@@ -22,7 +22,6 @@ export default function Login() {
             }
         })
     }
-
     return (
         <View
             style={styles.container}
@@ -35,29 +34,34 @@ export default function Login() {
                 <Text
                     style={styles.title}
                 >
-                    Iniciar SesiÃ³n
+                    Iniciar Sesión
                 </Text>
             </View>
             <TextInput
                 style={styles.input}
                 value={email}
                 onChange={(e) => setEmail(e.nativeEvent.text)}
+                placeholder="Correo Electronico"
+                textContentType='emailAddress'
+                keyboardType='email-address'
+                autoCapitalize='none'
+                autoCorrect={false}
+                autoCompleteType='email'
             />
             <TextInput
                 style={styles.input}
                 secureTextEntry={true}
                 value={password}
                 onChange={(e) => setPassword(e.nativeEvent.text)}
+                placeholder="Contraseña"
             />
-            <Button
-                title='INGRESAR'
-                style={styles.Button}
-                onPress={() => handleLogin()}
-            />
-            <Button
-                title='CONTINUAR COMO INVITADO'
-                style={styles.Button}
-            />
+            <View style={{marginBottom: 16}}>
+                <Button
+                    title='INGRESAR'
+                    style={styles.Button}
+                    onPress={() => handleLogin()}
+                />
+            </View>
         </View>
     )
 }
@@ -65,22 +69,25 @@ export default function Login() {
 export const styles = StyleSheet.create({
     photo: {
         width: 400,
-        height: 400
+        height: 400,
+        alignSelf: 'center'
     },
     title: {
         fontSize: 30,
         fontWeight: 'bold'
     },
     container: {
-        paddingHorizontal: 32
+        paddingHorizontal: 32,
     },
     input: {
         borderRadius: 16,
         borderWidth: 1,
-        marginBottom: 16
+        marginBottom: 16,
+        height: 50,
+        paddingLeft: 8,
+        fontSize: 18
     },
     loginButton: {
         borderRadius: 8,
-
     }
 })

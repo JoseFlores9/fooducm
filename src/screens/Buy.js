@@ -7,7 +7,7 @@ import { AuthContext } from '../context/AuthContext'
 
 export const Buy = (props) => {
     const { id } = props.route.params
-    const urlBase = Platform.OS === "ios" ? "http://localhost:8080/api/buy/": "http://10.0.2.2:8080/api/buy"
+    const urlBase = Platform.OS === "ios" ? "http://localhost:8080/api/buy/": "http://10.0.2.2:8080/api/buy/"
     const [data, setData] = useState()
     const { Auth } = useContext(AuthContext)
 
